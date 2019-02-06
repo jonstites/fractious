@@ -1,0 +1,8 @@
+[package]
+name = "fractal"
+version = "0.1.0"
+authors = ["Jonathan Stites <mail@jonstites.com>"]
+edition = "2018"
+
+[dependencies]
+clap = "~2.32.0"
