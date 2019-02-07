@@ -37,7 +37,7 @@ mod tests {
         for value in values.into_iter() {
             match is_mandelbrot(value) {
                 None => (),
-                Some(c) => panic!("{:?}", value),
+                Some(_c) => panic!("{:?}", value),
             }
         }
     }
