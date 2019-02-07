@@ -30,6 +30,12 @@ impl Mul for Complex {
     }
 }
 
+impl Complex {
+    fn new(r: f32, i: f32) -> Complex {
+        Complex { r, i }
+    }
+}
+
 fn is_mandelbrot(constant: Complex) -> Option<usize> {
     let mut value = constant;
     for i in 0..MAX_ITERATION {
@@ -71,11 +77,8 @@ mod tests {
     fn test_is_not_mandelbrot() {
         let values = vec![(2.0, 0.0), (0.0, 2.0), (1.0, 3.0), (1.0, -2.0)];
 
-        for value in values.into_iter() {
-            let value = Complex {
-                r: value.0,
-                i: value.1,
-            };
+        for (r, i) in values.into_iter() {
+            let value = Complex::new(r, i);
             match is_mandelbrot(value) {
                 None => panic!(),
                 Some(_) => (),
@@ -87,11 +90,8 @@ mod tests {
     fn test_is_mandelbrot() {
         let values = vec![(0.0, 0.0), (0.0, 0.1), (-0.03, 0.03)];
 
-        for value in values.into_iter() {
-            let value = Complex {
-                r: value.0,
-                i: value.1,
-            };
+        for (r, i) in values.into_iter() {
+            let value = Complex::new(r, i);
             match is_mandelbrot(value) {
                 None => (),
                 Some(_c) => panic!("{:?}", value),
