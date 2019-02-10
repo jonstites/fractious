@@ -3,7 +3,7 @@ extern crate image;
 extern crate num;
 
 use clap::{App, Arg};
-use fractal::escape_times_region;
+use fractious::escape_times_region;
 use num::Complex;
 use std::str::FromStr;
 
@@ -19,8 +19,8 @@ fn parse_pair<T: FromStr>(s: &str, separator: char) -> Option<(T, T)> {
 
 fn main() -> Result<(), std::io::Error> {
     let matches = App::new("My fractal program")
-        .version("0.1")
-        .author("Voldemort")
+        .version("0.1.0")
+        .author("Jonathan Stites")
         .about("something fractally")
         .arg(
             Arg::with_name("pixel_dimensions")
