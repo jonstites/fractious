@@ -3,8 +3,11 @@ name = "fractious"
 version = "0.1.0"
 authors = ["Jonathan Stites <mail@jonstites.com>"]
 edition = "2018"
+readme = "README.md"
+license = "Apache-2.0 OR MIT"
 
 [dependencies]
-clap = "~2.32.0"
-image = "*"
-num = "*"
+clap = "2.32.0"
+image = "0.21.0"
+num = "0.2"
+
