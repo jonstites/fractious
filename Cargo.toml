@@ -1,6 +1,8 @@
 [package]
 name = "fractious"
 version = "0.1.0"
+description = "A simple command-line program for generating images of the Mandelbrot set."
+repository = "https://github.com/jonstites/fractious"
 authors = ["Jonathan Stites <mail@jonstites.com>"]
 edition = "2018"
 readme = "README.md"
