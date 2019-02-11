@@ -29,7 +29,6 @@ matrix:
     - env: TARGET=x86_64-unknown-linux-musl
       rust:
         - stable
-        - beta
         - nightly
 
     # OSX
