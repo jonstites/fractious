@@ -1,6 +1,6 @@
 # Fractious
 
-[![Build Status](https://travis-ci.com/jonstites/fractals.svg?branch=master)](https://travis-ci.com/jonstites/fractals)
+[![Build Status](https://travis-ci.com/jonstites/fractious.svg?branch=master)](https://travis-ci.com/jonstites/fractious)
 
 ## About
 
