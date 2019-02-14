@@ -15,7 +15,7 @@ main() {
     cp target/$TARGET/release/fractious $staging/
     cp {README.md,LICENSE-MIT,LICENSE-APACHE} $staging
 
-    (cd "$tmpdir" && tar czf "$out_dir/${name}.tar.gz" "${name}")
+    (cd "$tmpdir" && tar -czf "$out_dir/${name}.tar.gz" "${name}")
     rm -rf $tmpdir
     set +ex
 }
