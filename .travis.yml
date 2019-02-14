@@ -51,6 +51,7 @@ matrix:
 before_install:
   - set -ex
   - rustup self update
+  - rustup target add $TARGET
   - rustup component add clippy
 
 script:
