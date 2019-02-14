@@ -67,7 +67,6 @@ deploy:
   file: ${PROJECT_NAME}-${TRAVIS_TAG}-${TARGET}.*
   on:
     condition: $TRAVIS_RUST_VERSION = stable
-    branches: all
     # Commented out for testing purposes
     #tags: true
   provider: releases
