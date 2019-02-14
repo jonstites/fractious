@@ -9,7 +9,7 @@ main() {
     local staging="${tmpdir}/${name}"
     local out_dir="$(pwd)/deployment"
 
-    mkdir -p out_dir
+    mkdir -p ${out_dir}
     mkdir -p ${staging}
     
     cp target/$TARGET/release/fractious $staging/
