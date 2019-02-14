@@ -48,15 +48,9 @@ matrix:
       env: TARGET=x86_64-unknown-linux-musl
       rust: nightly
   
-before_install:
-  - set -ex
-  - rustup self update
-  - rustup target add $TARGET
-  - rustup component add clippy
+install: ci/install.sh
 
-script:
-  - cargo clippy -- -D warnings
-  - ci/script.sh
+script: ci/script.sh
 
 before_deploy: ci/before_deploy.sh
 
