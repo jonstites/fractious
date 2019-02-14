@@ -69,6 +69,7 @@ deploy:
     condition: $TRAVIS_RUST_VERSION = stable
     # Commented out for testing purposes
     #tags: true
+    all_branches: true    
   provider: releases
   skip_cleanup: true
   draft: true
