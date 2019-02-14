@@ -5,7 +5,7 @@ export PATH="$PATH:$HOME/.cargo/bin"
 set -ex
 
 configure_cargo() {
-    local gcc_suffix=
+    local gcc_suffix=""
     if [ -n "$GCC_VERSION" ]; then
         gcc_suffix="-$GCC_VERSION"
     fi
@@ -27,5 +27,7 @@ main() {
     rustup self update
     rustup target add $TARGET
     rustup component add clippy
-    configure_cargo()
+    configure_cargo
 }
+
+main
