@@ -30,7 +30,7 @@ matrix:
       env: TARGET=x86_64-apple-darwin      
 
     - os: windows
-      env: TARGET=x86_64-pc-windows-gnu
+      env: TARGET=x86_64-pc-windows-msvc
 
     # Test for regressions in beta channel, because we're helpful
     - os: linux
