@@ -22,6 +22,11 @@ linker = "${gcc}"
 EOF
 }
 
+configure_windows() {
+if [ $TRAVIS_OS_NAME = windows ]; then
+  choco install windows-sdk-10.0
+fi
+}
 
 main() {
     rustup self update
