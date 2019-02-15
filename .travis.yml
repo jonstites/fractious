@@ -50,16 +50,14 @@ script:
   - cargo test --target $TARGET
 
 before_deploy:
-  - cargo build --release --target $TARGET
-  - strip "target/${TARGET}/release/fractious"
   - |
-    (
+    cargo build --release --target $TARGET
+    strip "target/${TARGET}/release/fractious"
     if [ "$TRAVIS_OS_NAME" = 'windows' ]; then
     7z "${PROJECT_NAME}-${TRAVIS_TAG}-${TARGET}.zip "target/${TARGET}/release/fractious"
     else
     tar -czf "${PROJECT_NAME}-${TRAVIS_TAG}-${TARGET}.tar.gz" "target/${TARGET}/release/fractious"    
     fi
-  )
   
 
 deploy:
