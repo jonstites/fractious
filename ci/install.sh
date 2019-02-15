@@ -33,6 +33,7 @@ main() {
     rustup target add $TARGET
     rustup component add clippy
     configure_cargo
+    configure_windows
 }
 
 main
