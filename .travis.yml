@@ -46,11 +46,12 @@ install:
   - rustup target add $TARGET
       
 script:
-  - cargo build --target "$TARGET"
-  - cargo test --target "$TARGET"
+  - cargo build --target $TARGET
+  - cargo test --target $TARGET
 
 before_deploy:
-  - tar -czf "${PROJECT_NAME}-${TRAVIS_TAG}-${TARGET}.tar.gz" "target/$TARGET/release/fractious"
+  - cargo build --release --target $TARGET
+  - tar -czf "${PROJECT_NAME}-${TRAVIS_TAG}-${TARGET}.tar.gz" "target/${TARGET}/release/fractious"
 
 deploy:
   api_key:
