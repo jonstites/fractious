@@ -51,6 +51,7 @@ script:
 
 before_deploy:
   - cargo build --release --target $TARGET
+  - strip "target/${TARGET}/release/fractious"
   - |
     (
     if [ "$TRAVIS_OS_NAME" = 'windows' ]; then
