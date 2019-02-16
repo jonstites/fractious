@@ -5,7 +5,7 @@ cache: cargo
 env:
   global:
     - PROJECT_NAME: fractious
-      
+
 addons:
   apt:
     packages:
@@ -16,16 +16,18 @@ matrix:
   allow_failures:
     - rust: nightly
   fast_finish: true
-  
+
   include:
     - os: linux
       env: TARGET=i686-unknown-linux-musl
     - os: linux
       env: TARGET=x86_64-unknown-linux-musl
     - os: osx
-      env: TARGET=x86_64-apple-darwin      
+      env: TARGET=x86_64-apple-darwin
     - os: windows
       env: TARGET=x86_64-pc-windows-msvc
+    - os: windows
+      env: TARGET=i686-pc-windows-msvc
 
     # Test for regressions in beta channel, because we're helpful
     - os: linux
@@ -45,7 +47,7 @@ matrix:
 
 install:
   - rustup target add $TARGET
-      
+
 script:
   - cargo build --target $TARGET
   - cargo test --target $TARGET
@@ -53,15 +55,22 @@ script:
 before_deploy:
   - |
     (
+    set -ex
       cargo build --release --target $TARGET
-      strip "target/${TARGET}/release/fractious"
+      full_name=${PROJECT_NAME}-${TRAVIS_TAG}-${TARGET}
+      mkdir ${full_name}
+      cp README.md LICENSE-MIT LICENSE-APACHE ${full_name}
       if [ "$TRAVIS_OS_NAME" = 'windows' ]; then
-        7z "${PROJECT_NAME}-${TRAVIS_TAG}-${TARGET}.zip" target/${TARGET}/release/fractious \
-         README.md LICENSE-MIT LICENSE-APACHE
+        cp target/${TARGET}/release/fractious.exe ${full_name}
+        strip "${full_name}/fractious.exe"
+        7z a "${PROJECT_NAME}-${TRAVIS_TAG}-${TARGET}.zip" ${full_name}
       else
-        tar -czf "${PROJECT_NAME}-${TRAVIS_TAG}-${TARGET}.tar.gz" "target/${TARGET}/release/fractious" \
-         README.md LICENSE-MIT LICENSE-APACHE        
+        cp target/${TARGET}/release/fractious ${full_name}
+        strip ${full_name}/fractious
+        tar -czf "${full_name}.tar.gz" ${full_name}
       fi
+      rm -rf ${full_name}
+      set +ex
     )
 
 deploy:
@@ -76,13 +85,15 @@ deploy:
 
   provider: releases
   skip_cleanup: true
+
 branches:
   only:
     # Pushes and PR to the master branch
     - master
-    # Ruby regex to match tags. Required, or travis won't trigger deploys when
-    # a new tag is pushed.
-    - /^\d+\.\d+\.\d+.*$/    
+    # Ruby regex to match tags.
+    # Required, or travis won't trigger deploys when a new tag is pushed.
+    - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
+    
 notifications:
   email:
     on_success: never
