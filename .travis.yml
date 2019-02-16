@@ -18,30 +18,30 @@ matrix:
   fast_finish: true
   
   include:
-    - os: linux
-      env: TARGET=i686-unknown-linux-musl
-    - os: linux
-      env: TARGET=x86_64-unknown-linux-musl
-    - os: osx
-      env: TARGET=x86_64-apple-darwin      
+    #- os: linux
+    #  env: TARGET=i686-unknown-linux-musl
+    #- os: linux
+    #  env: TARGET=x86_64-unknown-linux-musl
+    #- os: osx
+    #  env: TARGET=x86_64-apple-darwin      
     - os: windows
       env: TARGET=x86_64-pc-windows-msvc
 
     # Test for regressions in beta channel, because we're helpful
-    - os: linux
-      env: TARGET=i686-unknown-linux-musl
-      rust: beta
-    - os: linux
-      env: TARGET=x86_64-unknown-linux-musl
-      rust: beta
+    #- os: linux
+    #  env: TARGET=i686-unknown-linux-musl
+    #  rust: beta
+    #- os: linux
+    #  env: TARGET=x86_64-unknown-linux-musl
+    #  rust: beta
 
     # Test for issues in nightly channel, because we're helpful
-    - os: linux
-      env: TARGET=i686-unknown-linux-musl
-      rust: nightly
-    - os: linux
-      env: TARGET=x86_64-unknown-linux-musl
-      rust: nightly
+    #- os: linux
+    #  env: TARGET=i686-unknown-linux-musl
+    #  rust: nightly
+    #- os: linux
+    #  env: TARGET=x86_64-unknown-linux-musl
+    #  rust: nightly
 
 install:
   - rustup target add $TARGET
@@ -54,6 +54,12 @@ before_deploy:
   - |
     (
       cargo build --release --target $TARGET
+
+      ls -l "target/${TARGET}/release/fractious"
+      ls -l "target/${TARGET}/release"
+      ls -l "target/${TARGET}/"
+      ls -l "target/"
+      ls -l 
       strip "target/${TARGET}/release/fractious"
       if [ "$TRAVIS_OS_NAME" = 'windows' ]; then
         7z "${PROJECT_NAME}-${TRAVIS_TAG}-${TARGET}.zip" target/${TARGET}/release/fractious \
@@ -72,7 +78,9 @@ deploy:
 
   on:
     condition: $TRAVIS_RUST_VERSION = stable
-    tags: true
+    #tags: true
+    all_branches: true
+    draft: true
 
   provider: releases
   skip_cleanup: true
