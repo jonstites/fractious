@@ -19,7 +19,7 @@ fn parse_pair<T: FromStr>(s: &str, separator: char) -> Option<(T, T)> {
 
 fn main() -> Result<(), std::io::Error> {
     let matches = App::new("fractious")
-        .version("0.1.0")
+        .version("0.1.1")
         .author("Jonathan Stites")
         .about("Command-line program for generating images of the Mandelbrot set")
         .arg(

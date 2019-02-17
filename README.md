@@ -47,7 +47,7 @@ $ git clone git@github.com:jonstites/fractious.git
 $ cd fractious
 $ cargo build --release
 $ ./target/release/fractious --version
-fractious 0.1.0
+fractious 0.1.1
 ```
 
 ## License
