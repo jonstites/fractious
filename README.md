@@ -1,28 +1,53 @@
 # Fractious
 
+`fractious` is a command-line program for generating images of the Mandelbrot set.
+
 [![Build Status](https://travis-ci.com/jonstites/fractious.svg?branch=master)](https://travis-ci.com/jonstites/fractious)
+[![Cargo Version](https://img.shields.io/crates/v/fractious.svg)](https://crates.io/crates/fractious)
+[![License: MIT OR Apache-2.0](https://img.shields.io/crates/l/fractious.svg)](#license)
 
-## About
+## Usage
 
-A simple command-line program for generating images of the Mandelbrot set.
+With the default options, `fractious` produces the following image:
 
-Run with:
-`./fractious  -o mandelbrot.jpeg  -p 12000x8000`
-
-There are options for changing the region and the size of the image:
+```bash
+$ fractious -o mandelbrot.jpeg
 ```
-USAGE:
-    fractious [OPTIONS] --output <output>
 
-FLAGS:
-    -h, --help       Prints help information
-    -V, --version    Prints version information
+![An image of the Mandelbrot set created by fractious](https://www.jonstites.com/assets/images/mandelbrot.jpeg)
 
-OPTIONS:
-    -o, --output <output>                        File to display the image
-    -p, --pixel_dimensions <pixel_dimensions>    Dimensions of the image, defaults to 600x400 [default: 600x400]
-    -r, --region <region>
-            Upper left and lower right coordinates, defaults to -2+1i,1-1i [default: -2+1i,1-1i]
+The region of complex numbers to display can be specified, as can the dimensions of the image:
+
+```bash
+$ fractious -o mandelbrot_corner.jpeg -r "-2+1i,0" -p 600x300
+```
+
+![An image of a corner of the Mandelbrot set created by fractious](https://www.jonstites.com/assets/images/mandelbrot_corner.jpeg)
+
+## Installation
+
+[Precompiled binaries are available for Linux, macOS, and Windows](https://github.com/jonstites/fractious/releases).
+
+Linux and macOS binaries are static, so nothing else needs to be installed.
+Windows binaries require Microsoft Visual C++ (MSVC) Redistributable for Visual Studio 2017.
+
+
+For Rust programmers, `fractious` can be installed with `cargo`:
+
+```bash
+$ cargo install fractious
+```
+
+## Build
+
+If you have Rust installed, you can build from source:
+
+```bash
+$ git clone git@github.com:jonstites/fractious.git
+$ cd fractious
+$ cargo build --release
+$ ./target/release/fractious --version
+fractious 0.1.0
 ```
 
 ## License
