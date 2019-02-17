@@ -1,6 +1,6 @@
 [package]
 name = "fractious"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Jonathan Stites <mail@jonstites.com>"]
 description = "A command-line program for generating images of the Mandelbrot set."
 edition = "2018"
