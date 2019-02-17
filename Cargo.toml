@@ -1,15 +1,20 @@
 [package]
 name = "fractious"
 version = "0.1.0"
-description = "A simple command-line program for generating images of the Mandelbrot set."
-repository = "https://github.com/jonstites/fractious"
 authors = ["Jonathan Stites <mail@jonstites.com>"]
+description = "A command-line program for generating images of the Mandelbrot set."
 edition = "2018"
 readme = "README.md"
-license = "Apache-2.0 OR MIT"
+documentation = "https://github.com/jonstites/fractious"
+homepage = "https://github.com/jonstites/fractious"
+repository = "https://github.com/jonstites/fractious"
+license = "MIT OR Apache-2.0"
+keywords = ["cli", "fractal", "fractals", "mandelbrot"]
+categories = ["command-line-utilities"]
 
+[badges]
+travis-ci = { repository = "jonstites/fractious", branch = "master" }
 [dependencies]
 clap = "2.32.0"
 image = "0.21.0"
 num = "0.2"
-

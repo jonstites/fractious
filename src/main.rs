@@ -18,10 +18,10 @@ fn parse_pair<T: FromStr>(s: &str, separator: char) -> Option<(T, T)> {
 }
 
 fn main() -> Result<(), std::io::Error> {
-    let matches = App::new("My fractal program")
+    let matches = App::new("fractious")
         .version("0.1.0")
         .author("Jonathan Stites")
-        .about("something fractally")
+        .about("Command-line program for generating images of the Mandelbrot set")
         .arg(
             Arg::with_name("pixel_dimensions")
                 .short("p")
